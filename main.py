@@ -11,10 +11,13 @@ config = load_config()
 bot = Bot(token=config.bot_token)
 dp = Dispatcher(storage=MemoryStorage())
 
+# Регистрируем все обработчики
+logging.info("Подключение обработчиков...")
 dp.include_router(start.router)
 dp.include_router(survey.router)
 dp.include_router(quiz.router)
 dp.include_router(echo.router)
+logging.info("Обработчики подключены успешно")
 
 if __name__ == "__main__":
     dp.run_polling(bot)
